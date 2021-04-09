@@ -12,7 +12,7 @@ class Calculator {
     func add(_ nums: [Int]) -> Int {
         var sum = 0;
         for n in nums{
-            total += n
+            sum += n
         }
         return sum
     }
@@ -40,8 +40,27 @@ class Calculator {
     func divide(lhs: Int, rhs: Int) -> Int {
         return lhs / rhs
     }
+    
+    // returns the result of performing the op on lhs and rhs
     func mathOp(lhs: Int, rhs: Int, op: (Int, Int) -> Int) -> Int {
         return op(lhs, rhs)
+    }
+    
+    func mathOp(args: [Int], beg: Int, op: (Int, Int) -> Int) -> Int {
+        if args.count == 1 {
+            return op(beg, args[0])
+        }
+        return mathOp(args: Array(args[1..<args.count]), beg: op(args[0], beg), op: op)
+    }
+    
+    // returns count of array
+    func count(_ nums: [Int]) -> Int {
+        return nums.count
+    }
+    
+    // returns average of array
+    func avg(_ nums: [Int]) -> Int {
+        return add(nums) / count(nums)
     }
 }
 
@@ -62,19 +81,19 @@ calc.mathOp(lhs: 10, rhs: -5, op: { ($0 + $1) + ($0 - $1) }) == 20
 
 calc.add([1, 2, 3, 4, 5]) == 15
 calc.multiply([1, 2, 3, 4, 5]) == 120
-//calc.count([1, 2, 3, 4, 5, 6, 7, 8]) == 8
-//calc.count([]) == 0
-//calc.avg([2, 2, 2, 2, 2, 2]) == 2
-//calc.avg([1, 2, 3, 4, 5]) == 3
-//calc.avg([1]) == 1
-//
-//calc.mathOp(args: [1, 2, 3], beg: 0, op: { $0 + $1 }) == 6
-//    // this is (((0 op 1) op 2) op 3)
-//calc.mathOp(args: [1, 2, 3, 4, 5], beg: 0, op: { $0 + $1 }) == 15
-//    // this is (((((0 op 1) op 2) op 3) op 4) op 5)
-//calc.mathOp(args: [1, 1, 1, 1, 1], beg: 1, op: { $0 * $1 }) == 1
-//    // this is (((((1 op 1) op 1) op 1) op 1) op 1)
-//
+calc.count([1, 2, 3, 4, 5, 6, 7, 8]) == 8
+calc.count([]) == 0
+calc.avg([2, 2, 2, 2, 2, 2]) == 2
+calc.avg([1, 2, 3, 4, 5]) == 3
+calc.avg([1]) == 1
+
+calc.mathOp(args: [1, 2, 3], beg: 0, op: { $0 + $1 }) == 6
+    // this is (((0 op 1) op 2) op 3)
+calc.mathOp(args: [1, 2, 3, 4, 5], beg: 0, op: { $0 + $1 }) == 15
+    // this is (((((0 op 1) op 2) op 3) op 4) op 5)
+calc.mathOp(args: [1, 1, 1, 1, 1], beg: 1, op: { $0 * $1 }) == 1
+    // this is (((((1 op 1) op 1) op 1) op 1) op 1)
+
 //let p1 = (5, 5)
 //let p2 = (12, -27)
 //let p3 = (-4, 4)
