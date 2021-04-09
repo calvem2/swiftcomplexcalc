@@ -47,10 +47,11 @@ class Calculator {
     }
     
     func mathOp(args: [Int], beg: Int, op: (Int, Int) -> Int) -> Int {
-        if args.count == 1 {
-            return op(beg, args[0])
+        var result = beg
+        for n in args {
+            result = op(result, n)
         }
-        return mathOp(args: Array(args[1..<args.count]), beg: op(args[0], beg), op: op)
+        return result
     }
     
     // returns count of array
