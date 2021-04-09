@@ -14,13 +14,16 @@ class Calculator {
     }
     
     // returns result of lhs * rhs
-    func multiply(lhs l: Int, rhs r: Int) -> Int {
-        return l * r
+    func multiply(lhs: Int, rhs: Int) -> Int {
+        return lhs * rhs
     }
     
     // returns result of lhs / rhs
-    func divide(lhs l: Int, rhs r: Int) -> Int {
-        return l / r
+    func divide(lhs: Int, rhs: Int) -> Int {
+        return lhs / rhs
+    }
+    func mathOp(lhs: Int, rhs: Int, op: (Int, Int) -> Int) -> Int {
+        return op(lhs, rhs)
     }
 }
 
@@ -34,11 +37,11 @@ calc.subtract(lhs: 2, rhs: 2) == 0
 calc.multiply(lhs: 2, rhs: 2) == 4
 calc.divide(lhs: 2, rhs: 2) == 1
 
-//calc.mathOp(lhs: 5, rhs: 5, op: { (lhs: Int, rhs: Int) -> Int in (lhs + rjs) + (lhs * rhs) }) == 35
-//    // This style is one way of writing an anonymous function
-//calc.mathOp(lhs: 10, rhs: -5, op: { ($0 + $1) + ($0 - $1) }) == 20
-//    // This is the second, more terse, style; either works
-//
+calc.mathOp(lhs: 5, rhs: 5, op: { (lhs: Int, rhs: Int) -> Int in (lhs + rhs) + (lhs * rhs) }) == 35
+    // This style is one way of writing an anonymous function
+calc.mathOp(lhs: 10, rhs: -5, op: { ($0 + $1) + ($0 - $1) }) == 20
+    // This is the second, more terse, style; either works
+
 //calc.add([1, 2, 3, 4, 5]) == 15
 //calc.multiply([1, 2, 3, 4, 5]) == 120
 //calc.count([1, 2, 3, 4, 5, 6, 7, 8]) == 8
