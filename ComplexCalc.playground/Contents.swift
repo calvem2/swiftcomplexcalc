@@ -8,6 +8,15 @@ class Calculator {
         return l + r
     }
     
+    // returns sum of array
+    func add(_ nums: [Int]) -> Int {
+        var sum = 0;
+        for n in nums{
+            total += n
+        }
+        return sum
+    }
+    
     // returns result of lhs - rhs
     func subtract(lhs l: Int, rhs r: Int) -> Int {
         return l - r
@@ -16,6 +25,15 @@ class Calculator {
     // returns result of lhs * rhs
     func multiply(lhs: Int, rhs: Int) -> Int {
         return lhs * rhs
+    }
+    
+    // returns product of array
+    func multiply(_ nums: [Int]) -> Int {
+        var product = 1;
+        for n in nums {
+            product *= n
+        }
+        return product
     }
     
     // returns result of lhs / rhs
@@ -42,8 +60,8 @@ calc.mathOp(lhs: 5, rhs: 5, op: { (lhs: Int, rhs: Int) -> Int in (lhs + rhs) + (
 calc.mathOp(lhs: 10, rhs: -5, op: { ($0 + $1) + ($0 - $1) }) == 20
     // This is the second, more terse, style; either works
 
-//calc.add([1, 2, 3, 4, 5]) == 15
-//calc.multiply([1, 2, 3, 4, 5]) == 120
+calc.add([1, 2, 3, 4, 5]) == 15
+calc.multiply([1, 2, 3, 4, 5]) == 120
 //calc.count([1, 2, 3, 4, 5, 6, 7, 8]) == 8
 //calc.count([]) == 0
 //calc.avg([2, 2, 2, 2, 2, 2]) == 2
