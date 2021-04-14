@@ -89,6 +89,17 @@ class Calculator {
 let calc = Calculator()  // Don't change this declaration name; it's used in all the tests below
 
 // ====> Add your own tests here if you wish <====
+let t1 = calc.mathOp(lhs: 5, rhs: 5, op: { (lhs: Int, rhs: Int) -> Int in (lhs + rhs) + (lhs * rhs) })
+let t2 = calc.mathOp(lhs: 10, rhs: -5, op: { ($0 + $1) + ($0 - $1) })
+let t3 = calc.mathOp(args: [1, 2, 3], beg: 0, op: { $0 + $1 })
+let t4 = calc.mathOp(args: [1, 2, 3, 4, 5], beg: 0, op: { $0 + $1 })
+let t5 = calc.mathOp(args: [1, 1, 1, 1, 1], beg: 1, op: { $0 * $1 })
+t1 == 35
+t2 == 20
+t3 == 6
+t4 == 15
+t5 == 1
+
 
 // ====> Do not modify code in this section <====
 calc.add(lhs: 2, rhs: 2) == 4
